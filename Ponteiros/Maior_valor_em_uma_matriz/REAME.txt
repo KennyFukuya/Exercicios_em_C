@@ -1,0 +1,5 @@
+O programa receberá uma matriz de tamanho n x m e deverá retornar o maior valor. 
+Como entrada, o programa recebe dois valores inteiros 'm' e 'n', em seguida lê-se m linhas com n inteiros cada, que representam os valores da matriz. 
+A saída deverá retornar um valor inteiro que representa o maior valor da matriz.
+
+Obs.: alocar a matriz dinamicamente usando malloc.
