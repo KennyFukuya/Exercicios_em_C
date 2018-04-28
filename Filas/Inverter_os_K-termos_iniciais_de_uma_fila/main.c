@@ -21,25 +21,43 @@ void  chegada (int x, fila * F); // entra ... char
 char  partida ( fila * F );        // .. sai char
 void  destroi_fila( fila *F);
 void  mostra_fila( fila *F );
+void transfere_fila(fila *F,fila *P,int elem);
+void inverte_K_elem(fila *F, int qntinverte);
+
 
 int main(void){
-    fila *p;
-    int tam,qnt,elem;
-    scanf("%d",&tam);
-    scanf("%d",&qnt);
-//    printf("%i %i",tam,qnt);
-    p=cria_fila(tam);
-//    printf("%d ",tam);
-    for(int i=0;i<qnt;i++){
-        scanf("%d",&elem);
-        if(elem!=66){
-            chegada(elem,p);
-        }
+  int tam,qntelem,qntinverte,elem;
+  scanf("%d %d %d",&tam,&qntelem,&qntinverte);
+  fila *queue = cria_fila(tam);
+  for(int i=0;i<qntelem;i++){
+    scanf("%d",&elem);
+    chegada(elem,queue);
+  }
+  inverte_K_elem(queue,qntinverte);
+  mostra_fila(queue);
+  destroi_fila(queue);
+}
 
-//    printf("%d %d",elem, i);
-    }
-    mostra_fila(p);
+void inverte_K_elem(fila *F, int qntinverte){
+  int i,aux,j=qntinverte-1;
+  for(i=0;i<qntinverte/2;i++){
+      //printf("f[%i] %d  \n f[%d] %d \n",i,F->entrada[i],j,F->entrada[j]);
+      aux=F->entrada[i];
+      F->entrada[i]=F->entrada[j];
+      F->entrada[j]=aux;
+      j--;
+  }
+}
 
+
+void transfere_fila(fila *F,fila *P,int elem){
+  chegada(elem,P);
+  int i;
+  for(i = F ->front ; i != F -> rear ; i = (i+1) % F->capacidade )
+  {
+    chegada(F->entrada[i],P);
+  }
+  chegada(F->entrada[i],P); // ultimo
 }
 
 fila * cria_fila ( int C )
@@ -105,7 +123,7 @@ int tamanho_fila ( fila * F )
     {
   	char retorno;
   	if ( fila_vazia ( F ) ) /*  1 ou true se estiver estah vazia */
-  	{ printf("\n A FILA ESTAH VAZIA ");
+  	{ //printf("\n A FILA ESTAH VAZIA ");
   	  getchar();
   	  return '_';  // vazio
   	}
@@ -138,9 +156,9 @@ int tamanho_fila ( fila * F )
          }
        else
           {
-       printf("\n FILA NAO LIBERADA\n" );
+       //printf("\n FILA NAO LIBERADA\n" );
        }
-      printf("\n FILA LIBERADA OK\n" );
+      //printf("\n FILA LIBERADA OK\n" );
     }
 
 
@@ -148,7 +166,7 @@ int tamanho_fila ( fila * F )
   {
       int i;
       if( fila_vazia(F) )
-          printf("\n Fila Vazia\n");
+          printf("-1");
       else
       {//puts("\n FILA SE ENCONTRA ASSIM .....");
        //printf("\n Front ou cabeca : %d ", F -> front);

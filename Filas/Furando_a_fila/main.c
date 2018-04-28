@@ -21,25 +21,31 @@ void  chegada (int x, fila * F); // entra ... char
 char  partida ( fila * F );        // .. sai char
 void  destroi_fila( fila *F);
 void  mostra_fila( fila *F );
+void transfere_fila(fila *F,fila *P,int elem);
 
 int main(void){
-    fila *p;
-    int tam,qnt,elem;
-    scanf("%d",&tam);
-    scanf("%d",&qnt);
-//    printf("%i %i",tam,qnt);
-    p=cria_fila(tam);
-//    printf("%d ",tam);
-    for(int i=0;i<qnt;i++){
-        scanf("%d",&elem);
-        if(elem!=66){
-            chegada(elem,p);
-        }
+  int tam,elem_furao,elem,qntelem;
+  scanf("%d %d %d",&tam,&elem_furao,&qntelem);
+  fila *f = cria_fila(tam);
+  for(int i=0;i<qntelem;i++){
+    scanf("%d",&elem);
+    chegada(elem,f);
+  }
+  fila *p = cria_fila(tam);
+  transfere_fila(f,p,elem_furao);
+  destroi_fila(f);
+  mostra_fila(p);
+  destroi_fila(p);
+}
 
-//    printf("%d %d",elem, i);
-    }
-    mostra_fila(p);
-
+void transfere_fila(fila *F,fila *P,int elem){
+  chegada(elem,P);
+  int i;
+  for(i = F ->front ; i != F -> rear ; i = (i+1) % F->capacidade )
+  {
+    chegada(F->entrada[i],P);
+  }
+  chegada(F->entrada[i],P); // ultimo
 }
 
 fila * cria_fila ( int C )
@@ -105,7 +111,7 @@ int tamanho_fila ( fila * F )
     {
   	char retorno;
   	if ( fila_vazia ( F ) ) /*  1 ou true se estiver estah vazia */
-  	{ printf("\n A FILA ESTAH VAZIA ");
+  	{ //printf("\n A FILA ESTAH VAZIA ");
   	  getchar();
   	  return '_';  // vazio
   	}
@@ -138,9 +144,9 @@ int tamanho_fila ( fila * F )
          }
        else
           {
-       printf("\n FILA NAO LIBERADA\n" );
+       //printf("\n FILA NAO LIBERADA\n" );
        }
-      printf("\n FILA LIBERADA OK\n" );
+      //printf("\n FILA LIBERADA OK\n" );
     }
 
 
@@ -148,7 +154,7 @@ int tamanho_fila ( fila * F )
   {
       int i;
       if( fila_vazia(F) )
-          printf("\n Fila Vazia\n");
+          printf("-1");
       else
       {//puts("\n FILA SE ENCONTRA ASSIM .....");
        //printf("\n Front ou cabeca : %d ", F -> front);

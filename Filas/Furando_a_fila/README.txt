@@ -1,0 +1,1 @@
+Escreva uma funçao que que insere um dado elemento na primeira posição da fila. Ou seja, este elemento seja o "{\it fura fila}". Cada caso há duas linhas: linha 1: Tamanho da FILA, o elmento = {\it furão}, e a quantidade de entradas (n) na fila linha 2: sequência de n inteiros da fila

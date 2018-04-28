@@ -23,23 +23,20 @@ void  destroi_fila( fila *F);
 void  mostra_fila( fila *F );
 
 int main(void){
-    fila *p;
-    int tam,qnt,elem;
-    scanf("%d",&tam);
-    scanf("%d",&qnt);
-//    printf("%i %i",tam,qnt);
-    p=cria_fila(tam);
-//    printf("%d ",tam);
-    for(int i=0;i<qnt;i++){
-        scanf("%d",&elem);
-        if(elem!=66){
-            chegada(elem,p);
-        }
-
-//    printf("%d %d",elem, i);
-    }
-    mostra_fila(p);
-
+  fila *f;
+  int elem;
+  f=cria_fila(100);
+  scanf("%d",&elem);
+  for(int i=0;elem!=-1;i++){
+    chegada(elem,f);
+    scanf("%d",&elem);
+  }
+  int k;
+  scanf("%d",&k);
+  for(int i=0;i<k;i++){
+    partida(f);
+  }
+  mostra_fila(f);
 }
 
 fila * cria_fila ( int C )
@@ -105,7 +102,7 @@ int tamanho_fila ( fila * F )
     {
   	char retorno;
   	if ( fila_vazia ( F ) ) /*  1 ou true se estiver estah vazia */
-  	{ printf("\n A FILA ESTAH VAZIA ");
+  	{ //printf("\n A FILA ESTAH VAZIA ");
   	  getchar();
   	  return '_';  // vazio
   	}
@@ -148,7 +145,7 @@ int tamanho_fila ( fila * F )
   {
       int i;
       if( fila_vazia(F) )
-          printf("\n Fila Vazia\n");
+          printf("-1");
       else
       {//puts("\n FILA SE ENCONTRA ASSIM .....");
        //printf("\n Front ou cabeca : %d ", F -> front);
